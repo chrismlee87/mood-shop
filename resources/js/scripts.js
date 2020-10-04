@@ -43,28 +43,38 @@ function addItem(name, price) {
         }
     }
 
-    const item = { name: name, price: price, qty: 1 }
+    const item = { name, price, qty: 1 }
     cart.push(item)
 }
 
+// Show Items
 function showItems() {
-    let qty = 0
-    for (let i = 0; i < cart.length; i +=1) {
-        qty += cart[i].qty
-    }
-
+    const qty = getQty()
     console.log( `You have ${qty} in your cart`)
 
     for (let i = 0; i < cart.length; i += 1) {
         console.log(`${cart[i].name} $${cart[i].price} x ${cart[i].qty}`)
     }
 
+    console.log(`Total in cart: $${getTotal()}`)
+}
+
+// Get Qty
+function getQty() {
+    let qty = 0
+    for (let i = 0; i < cart.length; i +=1) {
+        qty += cart[i].qty
+    }
+    return qty
+}
+
+// Get Total
+function getTotal() {
     let total = 0
     for (let i = 0; i < cart.length; i += 1) {
         total += cart[i].price * cart[i].qty
     }
-    console.log(`Total in cart: $${total}`)
-
+    return total.toFixed(2)
 }
 
 addItem('apple', 0.99)
@@ -76,5 +86,3 @@ addItem('apple', 0.99)
 addItem('Orange', 1.29)
 
 showItems()
-
-
