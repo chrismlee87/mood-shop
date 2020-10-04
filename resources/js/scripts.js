@@ -33,3 +33,22 @@ for (let i=0; i<data.length; ++i) {   //for loop, increment before using variabl
     itemsContainer.appendChild(newDiv)  //put new div inside items container
 }
 
+const cart = []
+
+function addItem(name, price) {
+    const item = { name: name, price: price, qty: 1 }
+    cart.push(item)
+}
+
+function showItems() {
+    console.log( "You have " + cart.length + " in your cart")
+}
+
+addItem('apple', 0.99)
+addItem('Orange', 1.29)
+addItem('Opinion', 0.02)
+addItem('frisbee', 10.02)
+
+showItems()
+
+
