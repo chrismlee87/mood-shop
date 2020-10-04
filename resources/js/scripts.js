@@ -36,18 +36,44 @@ for (let i=0; i<data.length; ++i) {   //for loop, increment before using variabl
 const cart = []
 
 function addItem(name, price) {
+    for (let i = 0; i < cart.length; i += 1) {
+        if (cart [i].name === name) {
+            cart[i].qty += 1
+            return
+        }
+    }
+
     const item = { name: name, price: price, qty: 1 }
     cart.push(item)
 }
 
 function showItems() {
-    console.log( "You have " + cart.length + " in your cart")
+    let qty = 0
+    for (let i = 0; i < cart.length; i +=1) {
+        qty += cart[i].qty
+    }
+
+    console.log( `You have ${qty} in your cart`)
+
+    for (let i = 0; i < cart.length; i += 1) {
+        console.log(`${cart[i].name} $${cart[i].price} x ${cart[i].qty}`)
+    }
+
+    let total = 0
+    for (let i = 0; i < cart.length; i += 1) {
+        total += cart[i].price * cart[i].qty
+    }
+    console.log(`Total in cart: $${total}`)
+
 }
 
 addItem('apple', 0.99)
 addItem('Orange', 1.29)
 addItem('Opinion', 0.02)
+addItem('apple', 0.99)
 addItem('frisbee', 10.02)
+addItem('apple', 0.99)
+addItem('Orange', 1.29)
 
 showItems()
 
