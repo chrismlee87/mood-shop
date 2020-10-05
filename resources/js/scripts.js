@@ -66,15 +66,24 @@ function showItems() {
     let itemStr = ''
     for (let i = 0; i < cart.length; i += 1) {
         // console.log(`${cart[i].name} $${cart[i].price} x ${cart[i].qty}`)
+        
         const { name, price, qty } = cart[i]
 
         itemStr += `<li>${name} $${price} x ${qty} = ${qty * price}</li>`
     }
+    
     itemList.innerHTML = itemStr
 
     // console.log(`Total in cart: $${getTotal()}`)
     cartTotal.innerHTML = `Total in cart: $${getTotal()}`
+    
 }
+const all_items_button = Array.from(document.querySelectorAll("button"))
+console.log(all_items_button)
+all_items_button.forEach(elt => elt.addEventListener('click', () => {
+    addItem(elt.getAttribute('id'), elt.getAttribute('data-price'))
+    showItems()
+  }))
 
 // -----------------------------------------------------------
 // Get Qty
@@ -123,3 +132,4 @@ showItems()
 removeItem('apple', 1)
 removeItem('frisbee')
 showItems()
+
